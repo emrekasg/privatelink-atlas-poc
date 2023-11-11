@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = "mongodb-privatelink-poc"
+    Name = "privatelink-poc-vpc"
   }
 
 }
@@ -18,7 +18,7 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "mongodb-privatelink-poc-private-${count.index}"
+    Name = "privatelink-poc-private-${count.index}"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "mongodb-privatelink-poc-public-${count.index}"
+    Name = "privatelink-poc-public-${count.index}"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "mongodb-privatelink-poc-igw"
+    Name = "privatelink-poc-igw"
   }
 }
 
@@ -46,7 +46,7 @@ resource "aws_eip" "natgw" {
   count = 1
 
   tags = {
-    Name = "mongodb-privatelink-poc-natgw"
+    Name = "privatelink-poc-natgw"
   }
 }
 
@@ -56,7 +56,7 @@ resource "aws_nat_gateway" "natgw" {
   subnet_id     = aws_subnet.public[0].id
 
   tags = {
-    Name = "mongodb-privatelink-poc-natgw"
+    Name = "privatelink-poc-natgw"
   }
 
   depends_on = [

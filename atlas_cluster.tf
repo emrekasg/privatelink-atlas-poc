@@ -1,5 +1,5 @@
-resource "mongodbatlas_project" "poc" {
-  name   = "mongodb-poc-project"
+resource "mongodbatlas_project" "poc_project" {
+  name   = "poc-project"
   org_id = var.atlas_organization_id
 
   is_data_explorer_enabled              = true
@@ -7,7 +7,7 @@ resource "mongodbatlas_project" "poc" {
 }
 
 resource "mongodbatlas_cluster" "poc_cluster" {
-  project_id = mongodbatlas_project.poc.id
+  project_id = mongodbatlas_project.poc_project.id
   name       = "poc-cluster"
 
   provider_name               = "AWS"
@@ -19,7 +19,7 @@ resource "mongodbatlas_cluster" "poc_cluster" {
 resource "mongodbatlas_database_user" "poc_user" {
   username   = var.mongodb_username
   password   = var.mongodb_password
-  project_id = mongodbatlas_project.poc.id
+  project_id = mongodbatlas_project.poc_project.id
 
   auth_database_name = "admin"
   roles {

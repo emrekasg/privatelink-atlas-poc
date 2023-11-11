@@ -20,7 +20,7 @@ provider "aws" {
   alias = "aws"
   default_tags {
     tags = {
-      Name      = "mongodb-privatelink-poc"
+      Name      = "privatelink-poc"
       Terraform = true
     }
   }

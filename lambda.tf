@@ -71,7 +71,7 @@ resource "null_resource" "lambda" {
 
 resource "aws_lambda_function" "lambda" {
   filename      = data.archive_file.lambda_zip.output_path
-  function_name = "mongodb-privatelink-poc-lambda"
+  function_name = "privatelink-poc-lambda"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "index.handler"
   runtime       = "nodejs16.x"
